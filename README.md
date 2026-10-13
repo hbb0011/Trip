@@ -29,3 +29,13 @@ Q4: the image looks brighter because its in front of the gradient that is suppos
 Q5: the corners become squared instead or rounded
 
 Q6: the texts are right: 130 so they dont overlap the button 
+
+![alt text](image.png)
+
+palier4:
+Q7: Expanded gives enough width to seperate the rating and price
+
+
+Q8: just adding a 7th destination in the list destinations.dart is enough since i have the for loop in the home screen to display all destinations
+
+![alt text](image-1.png)
