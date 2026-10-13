@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:rihla/widgets/search_box.dart';
+import '../widgets/home_header.dart';
+
  
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -9,8 +12,10 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.all(20),
-          children: [
-            const Text('Rihla arrive bientôt…'),
+          children: const[
+            HomeHeader(prenom: 'Hiba'),
+            SizedBox(height: 20),
+            SearchBox(),
           ],
         ),
       ),
