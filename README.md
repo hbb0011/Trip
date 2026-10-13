@@ -22,3 +22,10 @@ Q1: without expanded the column takes only the space it needs, the avatar moves 
 Q2: prenom is declared final because it cannot change after its given a value
 
 Q3: cs.primary is a color that comes from the theme while colors.teal is a fixed color so if we change seedcolor cs.primary adapts but colors.teal stays always the same
+
+Palier3:
+Q4: the image looks brighter because its in front of the gradient that is supposed to darken it a little
+
+Q5: the corners become squared instead or rounded
+
+Q6: the texts are right: 130 so they dont overlap the button 

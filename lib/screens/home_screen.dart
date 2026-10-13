@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:rihla/widgets/search_box.dart';
-import '../widgets/home_header.dart';
+import 'package:rihla/widgets/home_header.dart';
+import 'package:rihla/widgets/hero_banner.dart';
+import 'package:rihla/data/destinations.dart';
+
 
  
 class HomeScreen extends StatelessWidget {
@@ -12,10 +15,12 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.all(20),
-          children: const[
-            HomeHeader(prenom: 'Hiba'),
-            SizedBox(height: 20),
-            SearchBox(),
+          children: [
+            const HomeHeader(prenom: 'Hiba'),
+            const SizedBox(height: 20),
+            const SearchBox(),
+            const SizedBox(height: 24),
+            HeroBanner(destination: destinations.first),
           ],
         ),
       ),
