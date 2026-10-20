@@ -45,3 +45,13 @@ Q9: in memory _categorie = c changes the value of _categorie to c but in screen 
 Q10: because _filtrees calculates the list and show the items matching the selected category everytime build() runs so it stays updated
 
 Q11: because it does not change data it only displays the same information 
+
+![alt text](image-2.png)
+
+palier6:
+without a key the heart dissapears when we change categories but with a key the heart stays on the ccard even when we change categories
+
+![alt text](image-3.png)
+![alt text](image-4.png)
+
+palier7:

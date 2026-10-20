@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const SectionTitle(titre: 'Populaires', action: 'Voit Tous'),
             const SizedBox(height: 12),
             for (final i in _filtrees)
-              DestinationCard(destination: i),
+              DestinationCard(key: ValueKey(i.nom), destination: i),
           ],
         ),
       ),
