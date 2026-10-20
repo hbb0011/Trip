@@ -19,6 +19,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String _categorie = 'Tout';
+  int _onglet = 0;
 
   List<Destination> get _filtrees {
     // TODO 1 : si _categorie vaut 'Tout', renvoyer destinations ;
@@ -34,48 +35,68 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.all(20),
-          children: [
-            const HomeHeader(prenom: 'Hiba'),
-            const SizedBox(height: 20),
-            const SearchBox(),
-            const SizedBox(height: 24),
-            HeroBanner(destination: destinations.first),
-            const SizedBox(height: 28),
-            const SectionTitle(titre: 'Categories'),
+        child: _onglet ==0
+            ? _construireAccueil()
+            : const Center(child: Text('Bientôt disponible')),
+      ),
 
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  for (final c in categories)
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: ChoiceChip(
-                        label: Text(c),
-                        selected: c == _categorie, // TODO 2 : vrai seulement pour la catégorie choisie
-                        onSelected: (_) {
-                          // TODO 3 : mémoriser c dans _categorie avec setState
-                          setState(() {
-                            _categorie =c;
-                          });
-                        },
-                      ),
-                    ),
-                ],
-              ),
-          ),
-
-
-            const SizedBox(height: 12),
-            const SectionTitle(titre: 'Populaires', action: 'Voit Tous'),
-            const SizedBox(height: 12),
-            for (final i in _filtrees)
-              DestinationCard(key: ValueKey(i.nom), destination: i),
-          ],
-        ),
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: _onglet,
+        onDestinationSelected: (i) {
+          setState(() {
+            _onglet = i;
+          });
+        },
+        destinations: const [
+          NavigationDestination(icon: Icon(Icons.home_outlined), label: 'Accueil'),
+          NavigationDestination(icon: Icon(Icons.favorite_border), label: 'Favoris'),
+          NavigationDestination(icon: Icon(Icons.person_outline), label: 'Profil'),
+        ],
       ),
     );
+  }
+
+  ListView _construireAccueil() {
+    return ListView(
+        padding: const EdgeInsets.all(20),
+        children: [
+          const HomeHeader(prenom: 'Hiba'),
+          const SizedBox(height: 20),
+          const SearchBox(),
+          const SizedBox(height: 24),
+          HeroBanner(destination: destinations.first),
+          const SizedBox(height: 28),
+          const SectionTitle(titre: 'Categories'),
+
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                for (final c in categories)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: ChoiceChip(
+                      label: Text(c),
+                      selected: c == _categorie, // TODO 2 : vrai seulement pour la catégorie choisie
+                      onSelected: (_) {
+                        // TODO 3 : mémoriser c dans _categorie avec setState
+                        setState(() {
+                          _categorie =c;
+                        });
+                      },
+                    ),
+                  ),
+              ],
+            ),
+        ),
+
+
+          const SizedBox(height: 12),
+          const SectionTitle(titre: 'Populaires', action: 'Voit Tous'),
+          const SizedBox(height: 12),
+          for (final i in _filtrees)
+            DestinationCard(key: ValueKey(i.nom), destination: i),
+        ],
+      );
   }
 }
