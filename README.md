@@ -35,7 +35,13 @@ Q6: the texts are right: 130 so they dont overlap the button
 palier4:
 Q7: Expanded gives enough width to seperate the rating and price
 
-
 Q8: just adding a 7th destination in the list destinations.dart is enough since i have the for loop in the home screen to display all destinations
 
 ![alt text](image-1.png)
+
+palier5:
+Q9: in memory _categorie = c changes the value of _categorie to c but in screen nothing updates automatically because setState() was not called
+
+Q10: because _filtrees calculates the list and show the items matching the selected category everytime build() runs so it stays updated
+
+Q11: because it does not change data it only displays the same information 
