@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'screens/home_screen.dart';
+import 'screens/detail_screen.dart';
+import 'data/destinations.dart';
  
 void main() {
   runApp(const RihlaApp());

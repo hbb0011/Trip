@@ -56,3 +56,6 @@ without a key the heart dissapears when we change categories but with a key the 
 
 palier7:
 ![alt text](image-5.png)
+
+Devoir:
+![alt text](image-6.png) //Mzel favoris f detail screen w max groupe w max travelers 
