@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/destination.dart';
- 
+import '../screens/detail_screen.dart';
 class HeroBanner extends StatelessWidget {
   final Destination destination;
  
@@ -120,7 +120,13 @@ class HeroBanner extends StatelessWidget {
               right: 16,
               bottom: 20,
               child: FilledButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => DetailScreen(destination: destination)
+                    ),
+                  );
+                },
                 style: FilledButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 54, 117, 105),
                   foregroundColor: Colors.black,

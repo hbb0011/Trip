@@ -60,3 +60,10 @@ palier7:
 Devoir:
 ![alt text](image-6.png) 
 //Mzel favoris f detail screen w max groupe w max travelers 
+
+Tp5/Palier2:
+Q1: The filter is conserved, HomeScreen stays in the pile when we open the DetailScreen, Navigator.pop() closes only the DetailScreen leaving HomeScreen on its previous state
+
+Q2: DetailScreen receives the desstination in the parametres in the constructor
+
+Q3: After removing clipbehaviour InkWell overflows when we touch the card

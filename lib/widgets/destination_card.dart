@@ -16,6 +16,7 @@ class DestinationCard extends StatelessWidget{
 
     return InkWell(
       onTap: (){
+        // TODO 1 : Navigator.push vers DetailScreen,
         Navigator.push(
           context, MaterialPageRoute(
             builder: (_) => DetailScreen(destination: destination),
@@ -29,6 +30,8 @@ class DestinationCard extends StatelessWidget{
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
+
+       //clipBehavior: Clip.antiAlias,
         child: Padding(
           padding: const EdgeInsetsGeometry.all(10),
           child: Row(

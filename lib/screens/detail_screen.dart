@@ -65,10 +65,11 @@ class _DetailScreenState extends State<DetailScreen> {
                       shape: BoxShape.circle,
                     ),
                     child: IconButton(
+                      /* TODO 2 : revenir à l'écran précédent */
                       icon: const Icon(Icons.arrow_back),
                       color: Colors.black,
-                      onPressed: () => Navigator.maybePop(context),
-                    ),
+                      onPressed: () => Navigator.pop(context),
+                    ), 
                   ),
                 ),
 
