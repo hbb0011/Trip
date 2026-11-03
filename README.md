@@ -79,3 +79,10 @@ Palier4:
 Q1: date is readonly because the user must select the date from the calender instead typing it manually otherwise he can type an invalid date
 
 Q2: We do not need to update the getter _total because it works dynamically and doesn't need manual update
+
+palier5:
+Q1: reservation stays null since the user did not clickk confirm
+
+Q2: "Don't use BuildContext across asynchronous gaps" mounted checks if a widget is still active
+
+Q3:the .pop closes the dialog and returns to the previous screen because it is part of the navigation stack

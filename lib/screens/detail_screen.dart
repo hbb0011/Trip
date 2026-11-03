@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rihla/data/destinations.dart';
+import 'package:rihla/models/reservation.dart';
 import 'package:rihla/widgets/favorite_button.dart';
 import 'package:rihla/screens/detail_screen.dart';
 import 'package:rihla/models/destination.dart';
@@ -38,6 +39,48 @@ class _DetailScreenState extends State<DetailScreen> {
       ),
     );
   }
+
+  Future<void> _reserver() async {
+    final reservation = await Navigator.push<Reservation>(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ReservationScreen(
+          destination: widget.destination,
+          voyageurs: travelers,
+        ),
+      ),
+    );
+    // TODO 3 : si reservation est null (retour sans valider), s'arrêter
+    if (reservation ==null) return;
+    // TODO 4 : si l'écran n'est plus affiché (!mounted), s'arrêter
+    if (!mounted) return;
+ 
+    await showDialog<void>(
+      context: context,
+      builder: (context) => AlertDialog(
+        icon: const Icon(Icons.check_circle, color: Colors.green, size: 48),
+        title: const Text('Réservation confirmée'),
+        content: Text(
+          'Nom: ${reservation.nom}\n'
+          'Destination: ${reservation.destination.nom}\n'
+          'Voyageurs: ${reservation.voyageurs}\n'
+          'Formule: ${reservation.formule}\n'
+          'Tot: ${reservation.total} DT \n'
+          'Email: ${reservation.email}\n'
+        ),                   // TODO 5 : nom, destination, voyageurs,
+                              //          formule, total et e-mail
+        actions: [
+          FilledButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Parfait'),
+          ),
+        ],
+      ),
+    );
+  }
+ 
+// Le bouton « Réserver » : onPressed: _reserver,
+
 
   @override
   Widget build(BuildContext context){
@@ -198,14 +241,7 @@ class _DetailScreenState extends State<DetailScreen> {
               ],
             ),
             const Spacer(),
-            FilledButton(onPressed: () {
-              Navigator.push(
-                context, 
-                MaterialPageRoute(
-                  builder: (_) => ReservationScreen(destination: destination, voyageurs: travelers),
-                )
-              );
-            }, child: const Text('Réserver')),
+            FilledButton(onPressed: _reserver, child: const Text('Réserver')),
           ],),
         ),
       ),

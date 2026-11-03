@@ -113,10 +113,19 @@ class _ReservationScreenState extends State<ReservationScreen> {
       });
       return;
     } 
-    // Provisoire : sera remplacé au palier 5
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Formulaire valide')),
+    final reservation = Reservation(
+      // TODO 1 : remplir avec widget.destination, les contrôleurs (trim),
+      //          _date!, widget.voyageurs et _formule
+      destination: widget.destination,
+      nom: _nomCtrl.text.trim(),
+      email: _emailCtrl.text.trim(),
+      telephone: _telCtrl.text.trim(),
+      dateDepart: _date!,
+      voyageurs: widget.voyageurs,
+      formule: _formule,
     );
+    // TODO 2 : fermer l'écran ET renvoyer reservation
+    Navigator.pop(context, reservation);
   }
  
   @override
@@ -132,29 +141,60 @@ class _ReservationScreenState extends State<ReservationScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               // TODO 4 : récapitulatif (image 64 x 64, nom, durée, voyageurs)
-              Row(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Image.asset(
-                      widget.destination.image,
-                      width: 64,
-                      height: 64,
-                      fit: BoxFit.cover,
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primaryContainer,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Row(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(
+                        widget.destination.image,
+                        width: 64,
+                        height: 64,
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(widget.destination.nom),
-                        Text('Durée : ${widget.destination.duree}'),
-                        Text('Voyageurs : ${widget.voyageurs}'),
-                      ],
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            widget.destination.nom,
+                            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+                          Row(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('${widget.destination.duree} -'),
+                                ],
+                              
+                              
+                              ),
+                             
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(' ${widget.voyageurs} voyageurs'),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  )
-                ],
+                  ]
+                )
               ),
               const SizedBox(height: 24),
               TextFormField(
@@ -175,6 +215,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
               const SizedBox(height: 16,),
               // TODO 6 : champ Téléphone (clavier phone, chiffres seulement,
               //          8 maximum, texte d'aide '8 chiffres, sans indicatif')
+            
             TextFormField(
               controller: _telCtrl,
               decoration: _deco('Telephone', Icons.phone_outlined, aide: '8 chiffres, sans indicatif'),
@@ -185,7 +226,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
               ],
               validator: _validerTel,
             ),
-            
+            const SizedBox(height: 25),
             // Dans la Column, sous un titre « Votre voyage » :
             Text('Votre Voyage',
               style: Theme.of(context).textTheme.titleMedium,
@@ -233,13 +274,26 @@ class _ReservationScreenState extends State<ReservationScreen> {
       //          qui appelle _valider (inspirez-vous de la barre du détail)
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(20),
-        child: Column(
+        child: Row(
           mainAxisSize: MainAxisSize.min,
-          children: [
-            Text('$_prixParPersonne DT x ${widget.voyageurs}'),
-            Text('$_total DT', style: Theme.of(context).textTheme.titleLarge,),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('$_prixParPersonne DT × ${widget.voyageurs}', ),
+                  Text(
+                    '$_total DT',
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
             
-            const SizedBox(height: 12),
+            const SizedBox(width: 24),
 
             FilledButton.icon(
               onPressed: _conditions ?_valider: null,
