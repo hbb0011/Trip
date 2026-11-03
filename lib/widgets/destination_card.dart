@@ -36,13 +36,16 @@ class DestinationCard extends StatelessWidget{
           padding: const EdgeInsetsGeometry.all(10),
           child: Row(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(14),
-                child: Image.asset(
-                  destination.image,
-                  width: 88,
-                  height: 88,
-                  fit: BoxFit.cover,
+              Hero(
+                tag: 'image_${destination.nom}',
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(14),
+                  child: Image.asset(
+                    destination.image,
+                    width: 88,
+                    height: 88,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               const SizedBox(width: 14),
