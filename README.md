@@ -74,3 +74,8 @@ Q1: _formKey.currentState!.validate() runs the validators, returns true if the f
 Q2:  inputFormatters control what the user types while validator checks if it's valid when submitting the form
 
 Q3: dispose() cleans up the controller when we finish using it
+
+Palier4:
+Q1: date is readonly because the user must select the date from the calender instead typing it manually otherwise he can type an invalid date
+
+Q2: We do not need to update the getter _total because it works dynamically and doesn't need manual update
