@@ -169,7 +169,9 @@ class _DetailScreenState extends State<DetailScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Text('$travelers', style: theme.textTheme.titleMedium),
                     ),
-                    IconButton.outlined(onPressed: () => setState(() => travelers++),
+                    IconButton.outlined(onPressed: () {
+                      if (travelers < 12) setState(() => travelers++);
+                    },
                       icon: const Icon(Icons.add),
                     ),
                   ],
