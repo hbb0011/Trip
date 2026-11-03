@@ -67,3 +67,10 @@ Q1: The filter is conserved, HomeScreen stays in the pile when we open the Detai
 Q2: DetailScreen receives the desstination in the parametres in the constructor
 
 Q3: After removing clipbehaviour InkWell overflows when we touch the card
+
+Palier3:
+Q1: _formKey.currentState!.validate() runs the validators, returns true if the fields are valid, or false if not 
+
+Q2:  inputFormatters control what the user types while validator checks if it's valid when submitting the form
+
+Q3: dispose() cleans up the controller when we finish using it

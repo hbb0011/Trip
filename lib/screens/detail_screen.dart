@@ -3,7 +3,7 @@ import 'package:rihla/data/destinations.dart';
 import 'package:rihla/widgets/favorite_button.dart';
 import 'package:rihla/screens/detail_screen.dart';
 import 'package:rihla/models/destination.dart';
-
+import 'reservation_screen.dart';
 
 class DetailScreen extends StatefulWidget{
   final Destination destination;
@@ -198,7 +198,14 @@ class _DetailScreenState extends State<DetailScreen> {
               ],
             ),
             const Spacer(),
-            FilledButton(onPressed: () {}, child: const Text('Réserver')),
+            FilledButton(onPressed: () {
+              Navigator.push(
+                context, 
+                MaterialPageRoute(
+                  builder: (_) => ReservationScreen(destination: destination, voyageurs: travelers),
+                )
+              );
+            }, child: const Text('Réserver')),
           ],),
         ),
       ),

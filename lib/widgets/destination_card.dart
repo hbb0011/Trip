@@ -31,7 +31,7 @@ class DestinationCard extends StatelessWidget{
           borderRadius: BorderRadius.circular(20),
         ),
 
-       //clipBehavior: Clip.antiAlias,
+        clipBehavior: Clip.antiAlias,
         child: Padding(
           padding: const EdgeInsetsGeometry.all(10),
           child: Row(
