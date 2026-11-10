@@ -109,6 +109,8 @@ Q2: without content-type application/json the server does not recognise the body
 Q3: we test mounted after await because the user may leave the screen while waiting for the server's response, if the screen does is closed we use context to provoke an error message
 ![alt text](image-7.png)
 ![alt text](image-8.png)
+![alt text](image-11.png)
+![alt text](image-12.png)
 
 Emulator:
 ![alt text](image-9.png)
