@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rihla/data/destinations.dart';
+import 'package:rihla/services/api_service.dart';
 import 'package:rihla/models/reservation.dart';
 import 'package:rihla/widgets/favorite_button.dart';
 import 'package:rihla/screens/detail_screen.dart';
@@ -55,28 +56,46 @@ class _DetailScreenState extends State<DetailScreen> {
     // TODO 4 : si l'écran n'est plus affiché (!mounted), s'arrêter
     if (!mounted) return;
  
-    await showDialog<void>(
-      context: context,
-      builder: (context) => AlertDialog(
-        icon: const Icon(Icons.check_circle, color: Colors.green, size: 48),
-        title: const Text('Réservation confirmée'),
-        content: Text(
-          'Nom: ${reservation.nom}\n'
-          'Destination: ${reservation.destination.nom}\n'
-          'Voyageurs: ${reservation.voyageurs}\n'
-          'Formule: ${reservation.formule}\n'
-          'Tot: ${reservation.total} DT \n'
-          'Email: ${reservation.email}\n'
-        ),                   // TODO 5 : nom, destination, voyageurs,
-                              //          formule, total et e-mail
-        actions: [
-          FilledButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Parfait'),
+    final String id;
+      try {
+        id = await ApiService.creerReservation(reservation);          // TODO 5 : appeler ApiService.creerReservation (sans oublier await)
+      } catch (e) {
+        if (!mounted) return;
+        // TODO 6 : SnackBar rouge « Envoi impossible : json-server est-il lancé ? »
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: const Text('Envoi impossible : json-server est-il lancé ?'),
+            backgroundColor: Theme.of(context).colorScheme.error,
           ),
-        ],
-      ),
-    );
+        );
+        return;   // pas de confirmation si rien n'est enregistré
+      }
+ 
+      if (!mounted) return;
+
+      await showDialog<void>(
+        context: context,
+        builder: (context) => AlertDialog(
+          icon: const Icon(Icons.check_circle, color: Colors.green, size: 48),
+          title: const Text('Réservation confirmée'),
+          content: Text(
+            'N° de réservation : $id\n'
+            'Nom: ${reservation.nom}\n'
+            'Destination: ${reservation.destination.nom}\n'
+            'Voyageurs: ${reservation.voyageurs}\n'
+            'Formule: ${reservation.formule}\n'
+            'Tot: ${reservation.total} DT \n'
+            'Email: ${reservation.email}\n'
+          ),                   // TODO 5 : nom, destination, voyageurs,
+                                //          formule, total et e-mail
+          actions: [
+            FilledButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
   }
  
 // Le bouton « Réserver » : onPressed: _reserver,

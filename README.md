@@ -100,3 +100,12 @@ Q1: because late allows us to declare it without giving it a value immediately
 Q2: the user see an error screen instead of a clear error message
 
 Q3: no the destinations already loaded once changing the category only filters the data so the interface can update immrdiately
+
+Palier4:
+Q1: the server already has the destination it's enough to send destiationId
+
+Q2: without content-type application/json the server does not recognise the body is a json
+
+Q3: we test mounted after await because the user may leave the screen while waiting for the server's response, if the screen does is closed we use context to provoke an error message
+![alt text](image-7.png)
+![alt text](image-8.png)
