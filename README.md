@@ -86,3 +86,10 @@ Q1: reservation stays null since the user did not clickk confirm
 Q2: "Don't use BuildContext across asynchronous gaps" mounted checks if a widget is still active
 
 Q3:the .pop closes the dialog and returns to the previous screen because it is part of the navigation stack
+
+Tp6/Palier2:
+Q1: fromJson uses factory constructor because normal constructors have strict rules they can not run the logic before making an object and they can not statement
+
+Q2: the "as int" fails at runtime with an error because "420" is a string
+
+Q3: the server answer is not instant, the list will arrive later so the app does not freeze waiting 

@@ -8,7 +8,6 @@ import 'package:rihla/widgets/section_title.dart';
 import 'package:rihla/models/destination.dart';
 import 'package:rihla/data/destinations.dart';
 
-
  
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

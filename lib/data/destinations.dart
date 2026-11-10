@@ -5,7 +5,7 @@ import '../models/destination.dart';
 const List<String> categories = ['Tout', 'Plage', 'Désert', 'Patrimoine'];
 
 /// Données de démonstration (fichier fourni, à copier tel quel).
-const List<Destination> destinations = [
+/*const List<Destination> destinations = [
   Destination(
     nom: 'Sidi Bou Saïd',
     region: 'Tunis',
@@ -78,4 +78,4 @@ const List<Destination> destinations = [
         'Médina fortifiée au bord de la mer, jardins de jasmin et longues '
         'plages : la station balnéaire historique du Cap Bon.',
   ),
-];
+];*/
