@@ -93,3 +93,10 @@ Q1: fromJson uses factory constructor because normal constructors have strict ru
 Q2: the "as int" fails at runtime with an error because "420" is a string
 
 Q3: the server answer is not instant, the list will arrive later so the app does not freeze waiting 
+
+Palier3:
+Q1: because late allows us to declare it without giving it a value immediately
+
+Q2: the user see an error screen instead of a clear error message
+
+Q3: no the destinations already loaded once changing the category only filters the data so the interface can update immrdiately
