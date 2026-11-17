@@ -115,3 +115,13 @@ Q3: we test mounted after await because the user may leave the screen while wait
 Emulator:
 ![alt text](image-9.png)
 ![alt text](image-10.png)
+
+Tp7/Partie1:
+nothing happends to main the broken code stays on the feature/favoris
+
+Partie2:
+q1:  favoritebutton stores nothing, it just shows what the model says
+
+q2: when the list reloads the destinations become new objects, the id stays the same so we still recognize the favorite
+
+q3: because favorites are only kept in the app's memory when you restart the app the memory is wiped

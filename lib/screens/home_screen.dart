@@ -7,6 +7,9 @@ import 'package:rihla/data/destinations.dart';
 import 'package:rihla/widgets/section_title.dart';
 import 'package:rihla/models/destination.dart';
 import '../services/api_service.dart';
+import 'favoris_screen.dart';
+import 'package:provider/provider.dart';
+import '../providers/favoris_model.dart';
 
  
 class HomeScreen extends StatefulWidget {
@@ -50,9 +53,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: _onglet ==0
-            ? _construireExplorer()
-            : const Center(child: Text('Bientôt disponible')),
+        child: switch (_onglet){
+          0 => _construireExplorer(),
+          1 => const FavorisScreen(),
+          _ => const Center(child: Text('Bientôt disponible')),
+        },
       ),
 
       bottomNavigationBar: NavigationBar(
@@ -62,9 +67,16 @@ class _HomeScreenState extends State<HomeScreen> {
             _onglet = i;
           });
         },
-        destinations: const [
+        destinations:  [
           NavigationDestination(icon: Icon(Icons.home_outlined), label: 'Accueil'),
-          NavigationDestination(icon: Icon(Icons.favorite_border), label: 'Favoris'),
+          NavigationDestination(
+            icon: Badge(
+              isLabelVisible: context.watch<FavorisModel>().nombre > 0,
+              label: Text('${context.watch<FavorisModel>().nombre}'),
+              child: Icon(Icons.favorite_border),
+            ),
+            label: 'Favoris',
+          ),
           NavigationDestination(icon: Icon(Icons.person_outline), label: 'Profil'),
         ],
       ),
