@@ -77,7 +77,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             label: 'Favoris',
           ),
-          NavigationDestination(icon: Icon(Icons.person_outline), label: 'Réservations'),
+          NavigationDestination(icon: Icon(Icons.person_outline), label: 'Profile'),
+
         ],
       ),
     );
