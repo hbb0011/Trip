@@ -76,7 +76,7 @@ class DestinationCard extends StatelessWidget{
                             style: theme.textTheme.bodySmall,
                           ),
                         ),
-                  const FavoriteButton(),    
+                   FavoriteButton(destination: destination),    
                 ],
               ),
               const SizedBox(height: 8),
