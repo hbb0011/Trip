@@ -125,3 +125,11 @@ q1:  favoritebutton stores nothing, it just shows what the model says
 q2: when the list reloads the destinations become new objects, the id stays the same so we still recognize the favorite
 
 q3: because favorites are only kept in the app's memory when you restart the app the memory is wiped
+
+Partie3:
+Q1: because main did not change only m brach had changes 
+
+Q2: the app does not run because dart does not understand it
+
+Journal Ai
+![alt text](image-13.png)
