@@ -133,3 +133,13 @@ Q2: the app does not run because dart does not understand it
 
 Journal Ai
 ![alt text](image-13.png)
+
+Tp8/Partie2:
+Q1: Because shared_preferences stores simple data like strings, 
+not Dart objects. JSON converts a Destination into text.
+
+Q2: FavorisModel()..charger() creates the model, 
+loads favorites, and returns the model. 
+FavorisModel().charger() returns a Future, not the model.
+
+Q3: Because the favorites would load, but the screens might not update. The favorites would be saved in memory but not shown.
