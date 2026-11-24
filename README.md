@@ -144,3 +144,11 @@ FavorisModel().charger() returns a Future, not the model.
 
 Q3: Because the favorites would load, but the screens might not update. 
 The favorites would be saved in memory but not shown.
+
+partie3:
+Q1: To save only valid data from the server, not an error response.
+
+Q2: An error message, because there is no saved cache yet.
+
+Q3: It sends the same error back. The FutureBuilder receives it and 
+can display an error message.
