@@ -10,6 +10,7 @@ import '../services/api_service.dart';
 import 'favoris_screen.dart';
 import 'package:provider/provider.dart';
 import '../providers/favoris_model.dart';
+import '../providers/reglages_model.dart';
 
  
 class HomeScreen extends StatefulWidget {
@@ -52,6 +53,22 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: Icon(
+              context.watch<ReglagesModel>().sombre
+                  ? Icons.light_mode
+                  : Icons.dark_mode,
+            ),
+            onPressed: () {
+              context.read<ReglagesModel>().basculerTheme();
+            },
+          ),
+        ],
+      ),
+
       body: SafeArea(
         child: switch (_onglet){
           0 => _construireExplorer(),
