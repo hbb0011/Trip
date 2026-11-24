@@ -10,6 +10,7 @@ import '../services/api_service.dart';
 import 'favoris_screen.dart';
 import 'package:provider/provider.dart';
 import '../providers/favoris_model.dart';
+import '../providers/reglages_model.dart';
 
  
 class HomeScreen extends StatefulWidget {
@@ -52,6 +53,22 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: Icon(
+              context.watch<ReglagesModel>().sombre
+                  ? Icons.light_mode
+                  : Icons.dark_mode,
+            ),
+            onPressed: () {
+              context.read<ReglagesModel>().basculerTheme();
+            },
+          ),
+        ],
+      ),
+
       body: SafeArea(
         child: switch (_onglet){
           0 => _construireExplorer(),
@@ -153,7 +170,21 @@ class _HomeScreenState extends State<HomeScreen> {
       final destinations = snapshot.data!;
       return RefreshIndicator(
         onRefresh: _recharger,
-        child: _construireAccueil(destinations),
+        child: Column(
+          children: [
+            if (ApiService.depuisCache)
+              Container(
+                width: double.infinity,
+                color: const Color.fromARGB(255, 255, 191, 0),
+                padding: const EdgeInsets.all(8),
+                child: const Text('Hors connexion : données enregistrées'),
+              ),
+
+            Expanded(
+              child: _construireAccueil(destinations),
+            ),
+          ],
+        ),
       );
     },
   );
