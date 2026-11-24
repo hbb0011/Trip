@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+
       appBar: AppBar(
         actions: [
           IconButton(
@@ -170,7 +170,21 @@ class _HomeScreenState extends State<HomeScreen> {
       final destinations = snapshot.data!;
       return RefreshIndicator(
         onRefresh: _recharger,
-        child: _construireAccueil(destinations),
+        child: Column(
+          children: [
+            if (ApiService.depuisCache)
+              Container(
+                width: double.infinity,
+                color: const Color.fromARGB(255, 255, 191, 0),
+                padding: const EdgeInsets.all(8),
+                child: const Text('Hors connexion : données enregistrées'),
+              ),
+
+            Expanded(
+              child: _construireAccueil(destinations),
+            ),
+          ],
+        ),
       );
     },
   );
